@@ -136,11 +136,17 @@
 
   /* audience */
   .aud{background:var(--bg)}
-  .audgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .audgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .audcard{border-top:2px solid var(--accent);padding:26px 0 0}
   .audcard h3{font-size:19px;margin-bottom:10px}
   .audcard p{font-size:14px;color:var(--muted)}
 
+  /* gc strip */
+  .gc{background:var(--bg2);border-top:1px solid var(--line)}
+  .gcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .gccard{background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--accent);padding:24px 22px}
+  .gccard b{display:block;font-size:17px;margin-bottom:8px}
+  .gccard span{font-size:14px;color:var(--muted);line-height:1.6}
   /* coverage */
   .cover{background:var(--bg2)}
   .cover .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -187,12 +193,12 @@
     .menu-btn{display:block;z-index:110}
     .capgrid{grid-template-columns:1fr 1fr 1fr}
     .diff .wrap,.cover .wrap,.bid .wrap{grid-template-columns:1fr;gap:40px}
-    .audgrid{grid-template-columns:1fr 1fr}
+    .audgrid,.gcgrid{grid-template-columns:1fr 1fr}
     .diff img,.cover img{height:360px}
   }
   @media(max-width:600px){
     section{padding:74px 0}
-    .capgrid,.audgrid,.frow{grid-template-columns:1fr}
+    .capgrid,.audgrid,.gcgrid,.frow{grid-template-columns:1fr}
     .pgrid{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
     .big{grid-column:span 2}.foot{grid-template-columns:1fr}
     .hero-badges{gap:22px}
@@ -208,7 +214,7 @@
       <a href="#caps">Capabilities</a>
       <a href="#diff">Why Reliable</a>
       <a href="#projects">Projects</a>
-      <a href="#coverage">Coverage</a>
+      <a href="#gc">For GCs</a><a href="#coverage">Coverage</a>
       <a href="#bid" class="btn">Request a Bid</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
@@ -285,7 +291,7 @@
       <span class="eyebrow">Why Reliable</span>
       <h2>Resort discipline. Subcontractor accountability.</h2>
       <p class="lead">We built our name shooting shells and setting finishes on jobs where failure isn't
-        an option — and we bring that same standard to every pool, residential or commercial.</p>
+        an option — and we bring that same standard to every shell and every finish we put our name behind.</p>
       <ul>
         <li><b>Self-performed, start to finish.</b><span>No chasing subs, no finger-pointing. The crew that engineers it is the crew that finishes it.</span></li>
         <li><b>Proven at resort scale.</b><span>240-yard pours, four pumps at once, on a $500M resort. If we can do it there, your job is handled.</span></li>
@@ -301,13 +307,13 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Selected Work</span>
-      <h2>3,400+ pools. From private estates to $500M resorts.</h2>
+      <h2>3,400+ pools. From builder programs to $500M resorts.</h2>
     </div>
     <div class="pgrid reveal">
       <div class="ptile big"><img src="assets/img/work-01.jpg" alt="Resort pool">
         <div class="cap"><span>Resort · Commercial</span><b>Resort-scale water features</b></div></div>
       <div class="ptile std"><img src="assets/img/work-02.jpg" alt="Estate pool">
-        <div class="cap"><span>Residential</span><b>Custom estate pools</b></div></div>
+        <div class="cap"><span>Builder Partner</span><b>Custom shells for pool builders</b></div></div>
       <div class="ptile std"><img src="assets/img/work-03.jpg" alt="Overlook infinity pool">
         <div class="cap"><span>Infinity</span><b>Vanishing-edge shells</b></div></div>
       <div class="ptile std"><img src="assets/img/work-04.jpg" alt="Resort infinity pool">
@@ -325,13 +331,33 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Who We Work With</span>
-      <h2>Your crew for the two hardest steps — or the whole build.</h2>
+      <h2>Your structural sub for the two hardest steps — or the whole build.</h2>
     </div>
     <div class="audgrid reveal">
       <div class="audcard"><h3>General Contractors</h3><p>A structural sub you can schedule around and never have to re-inspect. We hit dates and hold quality.</p></div>
       <div class="audcard"><h3>Custom Pool Builders</h3><p>Shotcrete shells and pebble finishes that make your designs buildable — and make you look good.</p></div>
       <div class="audcard"><h3>Resort &amp; Commercial</h3><p>Multi-pump, resort-scale pours with the fleet and crews to travel and deliver on the biggest jobs.</p></div>
-      <div class="audcard"><h3>Estate Homeowners</h3><p>Building a custom home or a dream backyard? We build the whole pool, end to end, to a resort standard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR GCs -->
+<section class="gc" id="gc">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">For General Contractors</span>
+      <h2>What your PM needs to know before we're on the schedule.</h2>
+      <p class="lead">The questions every GC asks a structural sub, answered up front. Specifics go in the bid package.</p>
+    </div>
+    <!-- NUMBERS TO ADD FROM JEREMY: insurance limits, bonding capacity, EMR / OSHA record, typical
+         mobilization lead time, states licensed. Do not publish figures until he confirms them. -->
+    <div class="gcgrid reveal">
+      <div class="gccard"><b>Engineered shells</b><span>Shotcrete placed to engineered drawings and inspected before finish. Stamped documentation available with every bid.</span></div>
+      <div class="gccard"><b>Insurance &amp; bonding</b><span>Certificates of insurance and bonding capacity provided with the proposal, sized to commercial and resort scopes.</span></div>
+      <div class="gccard"><b>Schedule you can build around</b><span>31 rigs and pumps and our own crews mean no waiting on a sub's sub. We commit to a mobilization date and hold it.</span></div>
+      <div class="gccard"><b>Safety &amp; site conduct</b><span>Bilingual crew leads, daily site coordination with your super, and job sites run to your safety program.</span></div>
+      <div class="gccard"><b>Multi-state mobilization</b><span>Self-performed resort work in Georgia, Missouri, and Tennessee. Crews and fleet travel for the right project.</span></div>
+      <div class="gccard"><b>One scope, one call</b><span>Dig through pebble under one contract, or shell-only and finish-only scopes. Either way, one accountable number.</span></div>
     </div>
   </div>
 </section>
@@ -345,11 +371,13 @@
       <p class="lead">Home base is Douglasville, west of Atlanta — but when a job is big enough, Reliable
         brings its crews and fleet across state lines. We've self-performed pool work on marquee resort
         projects in Missouri and Tennessee.</p>
+      <!-- SCOPE NUMBERS TO CONFIRM WITH JEREMY per resort: total yards shot, pools/features count,
+           crew size, weeks on site. Only the SDC pour detail below is publicly sourced. -->
       <div class="locs">
-        <div class="loc"><b>Metro Atlanta &amp; West Georgia</b><span>Home territory</span></div>
-        <div class="loc"><b>Silver Dollar City Resort</b><span>Branson, MO</span></div>
-        <div class="loc"><b>Dollywood Resort</b><span>Pigeon Forge, TN</span></div>
-        <div class="loc"><b>Margaritaville Resort</b><span>Tennessee</span></div>
+        <div class="loc"><b>Metro Atlanta &amp; West Georgia</b><span>Home territory · builder &amp; GC programs</span></div>
+        <div class="loc"><b>Silver Dollar City · Branson, MO</b><span>$500M expansion · 240-yd pours · 4 pumps running</span></div>
+        <div class="loc"><b>Dollywood · Pigeon Forge, TN</b><span>Resort pool project · self-performed</span></div>
+        <div class="loc"><b>Margaritaville · Tennessee</b><span>Resort hospitality project · self-performed</span></div>
       </div>
     </div>
     <img src="assets/img/hero.jpg" alt="A finished Reliable pool" class="reveal">
@@ -364,13 +392,13 @@
       <h2>Let's talk about your project.</h2>
       <p class="lead">Tell us about the scope — shell only, finish only, or the whole pool — and we'll get
         back to you with real numbers and real availability.</p>
-      <p class="fine">Reliable takes on commercial, builder, and select high-end residential work. Give us
-        the job and the timeline; we'll tell you straight whether we're the right crew for it.</p>
+      <p class="fine">Reliable bids commercial, resort, GC, and custom-builder work. Give us the job and
+        the timeline; we'll tell you straight whether we're the right crew for it, and what it takes to hold your date.</p>
     </div>
     <form class="reveal" onsubmit="return handleBid(event)">
       <div class="frow">
         <div class="field"><label>Name</label><input required name="name" autocomplete="name"></div>
-        <div class="field"><label>Company</label><input name="company" placeholder="GC / builder / homeowner"></div>
+        <div class="field"><label>Company</label><input name="company" placeholder="GC / builder / developer"></div>
       </div>
       <div class="frow">
         <div class="field"><label>Phone</label><input required name="phone" type="tel" autocomplete="tel"></div>
@@ -391,7 +419,6 @@
             <option value="">Select…</option>
             <option>Commercial / resort</option>
             <option>Custom builder / GC job</option>
-            <option>High-end residential</option>
           </select></div>
       </div>
       <div class="frow">
