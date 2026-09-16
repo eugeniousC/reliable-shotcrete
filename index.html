@@ -170,6 +170,9 @@
   .field select{appearance:none;cursor:pointer}
   .field select option{background:var(--panel-s)}
   form .btn{justify-self:start}
+  .form-status{font-size:14px;line-height:1.6;min-height:1.6em;color:var(--muted)}
+  .form-status.ok{color:var(--accent)}
+  .form-status.err{color:var(--steel)}
 
   /* footer */
   footer{background:var(--bg);border-top:1px solid var(--line);padding:66px 0 38px}
@@ -391,9 +394,14 @@
       <p class="lead">Tell us about the scope — shell only, finish only, or the whole pool — and we'll get
         back to you with real numbers and real availability.</p>
       <p class="fine">Reliable bids commercial, resort, GC, and custom-builder work. Give us the job and
-        the timeline; we'll tell you straight whether we're the right crew for it, and what it takes to hold your date.</p>
+        the timeline; we'll tell you straight whether we're the right crew for it, and what it takes to hold your date.
+        Prefer email? Send plans and specs to <a href="mailto:reliableshotcretellc@gmail.com">reliableshotcretellc@gmail.com</a>.</p>
     </div>
-    <form class="reveal" onsubmit="return handleBid(event)">
+    <form class="reveal" id="bidForm" action="https://formsubmit.co/reliableshotcretellc@gmail.com" method="POST" onsubmit="return handleBid(event)">
+      <input type="hidden" name="_subject" value="Bid request — reliable-shotcrete.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div class="frow">
         <div class="field"><label>Name</label><input required name="name" autocomplete="name"></div>
         <div class="field"><label>Company</label><input name="company" placeholder="GC / builder / developer"></div>
@@ -432,7 +440,8 @@
       </div>
       <div class="field"><label>Project details (optional)</label>
         <textarea name="details" rows="2" placeholder="Size, gallons, features, site conditions…"></textarea></div>
-      <button class="btn" type="submit">Submit Bid Request</button>
+      <button class="btn" type="submit" id="bidBtn">Submit Bid Request</button>
+      <p class="form-status" id="bidStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -453,6 +462,7 @@
       <div>
         <h4>Contact</h4>
         <p><a href="tel:+16785407460">(678) 540-7460</a><br>
+        <a href="mailto:reliableshotcretellc@gmail.com">reliableshotcretellc@gmail.com</a><br>
         4780 Highway 5, Douglasville, GA<br>
         <a href="#bid">Request a bid</a><br>Se habla español</p>
       </div>
@@ -475,9 +485,25 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  var BID_EMAIL='reliableshotcretellc@gmail.com';
   function handleBid(ev){ev.preventDefault();
-    alert('Thanks — your bid request is in.\\n\\n(Demo: in the live site this routes to Jeremy by text + email.)');
-    ev.target.reset();return false;}
+    var f=ev.target,btn=document.getElementById('bidBtn'),st=document.getElementById('bidStatus');
+    var fd=new FormData(f);
+    if(fd.get('_honey')){f.reset();return false;}
+    btn.disabled=true;btn.textContent='Sending…';st.className='form-status';st.textContent='';
+    fetch('https://formsubmit.co/ajax/'+BID_EMAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd})
+      .then(function(r){return r.ok?r.json():Promise.reject(r)})
+      .then(function(){st.className='form-status ok';
+        st.textContent='Got it. Your bid request is in — we\'ll follow up by phone or email.';
+        f.reset();})
+      .catch(function(){
+        var lines=['Name: '+fd.get('name'),'Company: '+fd.get('company'),'Phone: '+fd.get('phone'),
+          'Email: '+fd.get('email'),'Scope: '+fd.get('scope'),'Project type: '+fd.get('ptype'),
+          'Location: '+fd.get('location'),'Timeline: '+fd.get('timeline'),'','Details:',fd.get('details')||''];
+        st.className='form-status err';
+        st.innerHTML='Couldn\'t send from the page. <a href="mailto:'+BID_EMAIL+'?subject='+encodeURIComponent('Bid request — reliable-shotcrete.com')+'&body='+encodeURIComponent(lines.join('\n'))+'">Click here to send it by email instead</a>, or call (678) 540-7460.';})
+      .finally(function(){btn.disabled=false;btn.textContent='Submit Bid Request';});
+    return false;}
 </script>
 </body>
 </html>
